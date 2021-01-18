@@ -72,15 +72,49 @@ const migrations = {
     } 
 }
 
-exports.up = async (knex) => {
+exports.up = async (knex, Promise) => {
     for(key in migrations)
         await knex.schema.createTable(key, migrations[key])
     return knex
 }
 
-exports.down = async (knex) => {
+exports.down = async (knex, Promise) => {
     for(key in migrations)
         await knex.schema.dropTable(key)
     return knex
 }
+```
+
+#### Files
+
+##### package.json
+
+```json
+"scripts": {
+    "dev": "nodemon src/main.js",
+    "dbup": "knex migrate:latest",
+    "dbdown": "knex migrate:rollback",
+    "init": "npm run dbup && npm run dbdown"
+},
+```
+
+##### knexfile.js
+
+```js
+// Update with your config settings.
+
+module.exports = {
+
+  development: {
+    client: 'sqlite3',
+    connection: {
+      filename: './src/db/db.sqlite3'
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: './src/db/migrations'
+    }
+  }
+};
+
 ```
