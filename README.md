@@ -7,7 +7,7 @@
 <code>$ knex migrate:make create_table_name</code>
 4. create db_table from migrations
 <code>$ knex migrate:latest</code>
-5. crop db_table from migrations
+5. drop db_table from migrations
 <code>$ knex migrate:rollback</code>
 
 
