@@ -44,3 +44,45 @@ exports.down = (knex) => knex.schema
     .dropTable('user_roles')
 
 ```
+
+#### Auto Generated Migrations
+```js
+const migrations = {
+
+    users: (table) => {
+        table.increments('id')
+        table.string('first_name', 255).notNullable()
+        table.string('last_name', 255).notNullable()
+        table.string('birth_date', 255).notNullable()
+        table.timestamps(true, true)
+    }, 
+
+    roles: (table) => {
+        table.increments('id')
+        table.string('name', 255).notNullable()
+        table.string('description', 255).notNullable()
+        table.timestamps(true, true)
+    },
+
+    user_roles: (table) => {
+        table.increments('id')
+        table.string('name', 255).notNullable()
+        table.string('description', 255).notNullable()
+        table.timestamps(true, true)
+    } 
+}
+
+exports.up = async (knex) => {
+    for(key in migrations){
+        await knex.schema.createTable(key, migrations[key])
+    }
+    return knex
+}
+
+exports.down = async (knex) => {
+    for(key in migrations){
+        await knex.schema.dropTable(key)
+    }
+    return knex
+}
+```
