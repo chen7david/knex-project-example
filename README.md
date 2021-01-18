@@ -94,7 +94,7 @@ exports.down = async (knex, Promise) => {
     "dev": "nodemon src/main.js",
     "dbup": "knex migrate:latest",
     "dbdown": "knex migrate:rollback",
-    "init": "npm run dbup && npm run dbdown"
+    "init": "npm run dbdown && npm run dbup"
 },
 ```
 
