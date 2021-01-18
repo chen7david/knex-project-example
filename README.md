@@ -53,24 +53,29 @@ exports.down = (knex) => knex.schema
 const migrations = {
 
     users: (table) => {
-        table.increments('id')
-        table.string('first_name', 255).notNullable()
-        table.string('last_name', 255).notNullable()
-        table.string('birth_date', 255).notNullable()
+        table.increments().primary()
+        table.string('userId').unique().notNullable()
+        table.string('username').notNullable().unique()
+        table.string('email').notNullable().unique()
+        table.string('password').notNullable()
+        table.boolean('confirmed').defaultTo(false)
+        table.boolean('suspended').defaultTo(false)
+        table.boolean('disabled').defaultTo(false)
         table.timestamps(true, true)
     }, 
 
     roles: (table) => {
-        table.increments('id')
-        table.string('name', 255).notNullable()
-        table.string('description', 255).notNullable()
+        table.increments().primary()
+        table.string('name').unique().notNullable()
+        table.text('description')
         table.timestamps(true, true)
     },
 
     user_roles: (table) => {
-        table.increments('id')
-        table.string('name', 255).notNullable()
-        table.string('description', 255).notNullable()
+        table.increments().primary()
+        table.unique(['user_id', 'role_id'])
+        table.integer('user_id').references('id').inTable('users').onDelete('CASCADE').index().notNullable()
+        table.integer('role_id').references('id').inTable('roles').onDelete('CASCADE').index().notNullable()
         table.timestamps(true, true)
     } 
 }
