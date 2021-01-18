@@ -73,16 +73,14 @@ const migrations = {
 }
 
 exports.up = async (knex) => {
-    for(key in migrations){
+    for(key in migrations)
         await knex.schema.createTable(key, migrations[key])
-    }
     return knex
 }
 
 exports.down = async (knex) => {
-    for(key in migrations){
+    for(key in migrations)
         await knex.schema.dropTable(key)
-    }
     return knex
 }
 ```
