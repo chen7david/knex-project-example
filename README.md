@@ -1,11 +1,11 @@
 # knex-project-example
-#### Installation
-1. <code>$ npm i knex sqlite3</code>
-#### Create knexfile.js
-2. <code>$ knex init</code>
+1. Installation
+<code>$ npm i knex sqlite3</code>
+2. Create knexfile.js
+<code>$ knex init</code>
 #### Create migration_table.js
 3. <code>$ knex migrate:make create_table_name</code>
-#### Create db_table from migrations 
+#### Create db_table from migrations
 4. <code>$ knex migrate:latest</code>
 #### Drop db_table from migrations
 5. <code>$ knex migrate:rollback</code>
