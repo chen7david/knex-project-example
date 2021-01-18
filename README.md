@@ -1,4 +1,23 @@
 # knex-project-example
+
+#### Project
+```cmd
+/Users/david/Desktop/db-test
+├── knexfile.js
+├── package-lock.json
+├── package.json
+└── src
+   ├── db
+   |  ├── db.sqlite3
+   |  ├── migrations
+   |  |  └── 20210118121642_create_migrations.js
+   |  └── migrations.js
+   ├── main.js
+   ├── models
+   └── utils
+```
+
+#### Setup
 1. installation
 <code>$ npm i knex sqlite3</code>
 2. create knexfile.js
@@ -56,6 +75,7 @@ const migrations = {
         table.increments().primary()
         table.string('userId').unique().notNullable()
         table.string('username').notNullable().unique()
+        table.date('birth_date', 255).notNullable()
         table.string('email').notNullable().unique()
         table.string('password').notNullable()
         table.boolean('confirmed').defaultTo(false)
@@ -125,4 +145,31 @@ module.exports = {
   }
 };
 
+```
+
+##### main.js
+```js
+global.c = (val) => console.log(val)
+const knexfile = require('./../knexfile')
+const knex = require('knex')(knexfile.development)
+
+const main = async () => {
+    const res1 = await knex('users').insert({
+        first_name: 'david',
+        last_name: 'chen',
+        birth_date: '1990-09-23'
+    })
+    const data = await knex.select('*').from('users')
+    c({res1, data})
+}
+
+const run = async () => {
+    try {
+        await main()
+    } catch (err) {
+        c(err)
+    }   
+}
+
+run()
 ```
