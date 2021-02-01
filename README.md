@@ -1,5 +1,27 @@
 # knex-project-example
 
+#### Creating a Basic Knex HTTP Server
+
+1. create a new folder.
+2. open this folder in VSCode.
+3. initialize your node-js project
+<code>$ knex init</code>
+4. install koa
+<code>$ npm i koa </code>
+5. create a main.js file
+
+```js
+const Koa = require('koa')
+const app = new Koa()
+const port = 4000
+
+app.listen(port)
+```
+
+<code>$ knex migrate:latest</code>
+5. drop db_table from migrations
+<code>$ knex migrate:rollback</code>
+
 #### Project
 ```cmd
 /Users/david/Desktop/db-test
