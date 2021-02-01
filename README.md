@@ -17,6 +17,22 @@ const port = 4000
 
 app.listen(port)
 ```
+#### Adding Controllers and Middleware
+A koa server support middleware and controller functions. 
+- middleware: modifies the request then passes it on to the next middleware.
+- controller modifies the request and responds to the user. 
+
+```js
+const middleware = async (ctx, next) => {
+    // modify the request object here.
+    await next()
+}
+
+const controller = async (ctx) => {
+    // modify the request object here.
+    ctx.body = 'add your response here'
+}
+```
 
 <code>$ knex migrate:latest</code>
 5. drop db_table from migrations
