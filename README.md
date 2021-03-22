@@ -23,6 +23,22 @@ module.exports = {
 }
 ```
 4. <code>$ knex migrate:make create_tables</code>
+<code>[date_info]create_tables.js</code>
+```js
+const migrations = require('./../schema')
+
+exports.up = async (knex, Promise) => {
+    for(key in migrations)
+        await knex.schema.createTable(key, migrations[key])
+    return knex
+}
+
+exports.down = async (knex, Promise) => {
+    for(key in migrations)
+        await knex.schema.dropTable(key)
+    return knex
+}
+```
 5. <code>$ touch src/db/migrations.js</code>
 
 <code>migrations.js</code>
@@ -34,7 +50,6 @@ module.exports = {
         table.timestamps(true, true)
     },
 }
-
 ```
 
 #### B. Creating a Basic Knex HTTP Server
