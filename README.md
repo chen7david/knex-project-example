@@ -23,6 +23,7 @@ module.exports = {
 }
 ```
 4. <code>$ knex migrate:make create_tables</code>
+
 <code>[date_info]create_tables.js</code>
 ```js
 const migrations = require('./../schema')
