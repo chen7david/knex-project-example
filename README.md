@@ -4,9 +4,6 @@
 1. <code>$ npm init -y</code>
 2. <code>$ npm i knex sqlite3</code>
 3. <code>$ knex init</code>
-4. <code>$ knex migrate:make create_tables</code>
-4. <code>$ touch src/db/migrations.js</code>
-
 
 <code>knexfile.js</code>
 ```js
@@ -24,7 +21,8 @@ module.exports = {
     }, 
 }
 ```
-
+4. <code>$ knex migrate:make create_tables</code>
+5. <code>$ touch src/db/migrations.js</code>
 
 ```js
 module.exports = {
