@@ -25,6 +25,7 @@ module.exports = {
 4. <code>$ knex migrate:make create_tables</code>
 5. <code>$ touch src/db/migrations.js</code>
 
+<code>migrations.js</code>
 ```js
 module.exports = {
     users: (table) => {
