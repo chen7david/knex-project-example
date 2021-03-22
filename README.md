@@ -1,6 +1,43 @@
 # knex-project-example
 
-#### Creating a Basic Knex HTTP Server
+#### A. Creating a Basic Knex sqlite3
+1. <code>$ npm init -y</code>
+2. <code>$ npm i knex sqlite3</code>
+3. <code>$ knex init</code>
+4. <code>$ knex migrate:make create_tables</code>
+4. <code>$ touch src/db/migrations.js</code>
+
+
+<code>knexfile.js</code>
+```js
+module.exports = {
+
+    development: {
+      client: 'sqlite3',
+      connection: {
+        filename: './src/db/dev.sqlite3'
+      },
+      migrations: {
+        tableName: 'knex_migrations',
+        directory: './src/db/migrations'
+      }
+    }, 
+}
+```
+
+
+```js
+module.exports = {
+    users: (table) => {
+        table.increments().primary()
+        
+        table.timestamps(true, true)
+    },
+}
+
+```
+
+#### B. Creating a Basic Knex HTTP Server
 
 1. create a new folder.
 2. open this folder in VSCode.
