@@ -53,6 +53,34 @@ module.exports = {
 }
 ```
 
+5. <code>Knstantiate Knex Object</code>
+```js
+const { development } = require('./../../knexfile')
+const knex = require('knex')(development)
+```
+
+#### A+. Add Objection
+6. <code>$ npm i objection</code>
+7. <code>$ mkdir src/models</code>
+8. <code>$ touch src/models/Model.js</code>
+
+<code>Model.js</code>
+
+5. <code>Knstantiate Knex Object</code>
+```js
+const { development } = require('./../../knexfile')
+const knex = require('knex')(development)
+const { Model } = require('objection')
+Model.knex(knex)
+
+
+class BaseModel extends Model {
+
+}
+
+module.exports = Model
+```
+
 #### B. Creating a Basic Knex HTTP Server
 
 1. create a new folder.
