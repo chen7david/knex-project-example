@@ -26,7 +26,7 @@ module.exports = {
 
 <code>xxxxx_create_tables.js</code>
 ```js
-const migrations = require('./../schema')
+const migrations = require('./../migrations')
 
 exports.up = async (knex, Promise) => {
     for(key in migrations)
