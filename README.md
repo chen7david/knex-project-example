@@ -59,10 +59,18 @@ const { development } = require('./../../knexfile')
 const knex = require('knex')(development)
 ```
 
+```cmd
+$ npm init -y && npm i knex sqlite3 && knex init && touch knexfile.js
+```
+
 #### A+. Add Objection
 6. <code>$ npm i objection</code>
 7. <code>$ mkdir src/models</code>
 8. <code>$ touch src/models/Model.js</code>
+
+```cmd
+$ knex migrate:make create_tables && touch src/db/migrations.js && npm i objection && mkdir src/models && touch src/models/Model.js
+```
 
 <code>Model.js</code>
 
