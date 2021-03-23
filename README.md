@@ -6,6 +6,25 @@
 2. <code>$ npm i knex sqlite3</code>
 3. <code>$ knex init</code>
 
+<code>package.js</code>
+```js
+module.exports = {
+
+  // ....
+
+  "scripts": {
+    "dev": "nodemon src/main.js",
+    "dbu": "knex migrate:latest",
+    "dbd": "knex migrate:rollback",
+    "dbi": "npm run dbd && npm run dbu"
+  },
+
+  // ....
+
+}
+```
+
+
 <code>knexfile.js</code>
 ```js
 module.exports = {
