@@ -91,7 +91,9 @@ $ npm init -y && npm i knex sqlite3 && knex init && touch knexfile.js
 
 #### A. Creating Seeds
 1. <code>$ knex seed:make 01-seed_name</code>
+
 <code>01-seed_name.js</code>
+
 ```js
 exports.seed = function(knex) {
   // Deletes ALL existing entries
