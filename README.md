@@ -110,7 +110,7 @@ exports.seed = function(knex) {
 ```
 2. <code>$ knex seed:run</code>
 
-#### A+. Add Objection
+### A+. Add Objection
 6. <code>$ npm i objection</code>
 7. <code>$ mkdir src/models</code>
 8. <code>$ touch src/models/Model.js</code>
@@ -121,7 +121,7 @@ $ knex migrate:make create_tables && touch src/db/migrations.js && npm i objecti
 
 <code>Model.js</code>
 
-5. <code>Knstantiate Knex Object</code>
+5. <code>Instantiate Knex Object</code>
 ```js
 const { development } = require('./../../knexfile')
 const knex = require('knex')(development)
@@ -134,6 +134,55 @@ class BaseModel extends Model {
 }
 
 module.exports = Model
+```
+
+6. <code>Example Class</code>
+```js
+const Model = require('./Model')
+const bcrypt = require('bcrypt')
+const BCRYPT_ROUNDS = 12
+
+class User extends Model {
+    
+    async verifyPassword(password){
+        return await bcrypt.compare(password, this.password)    
+    }
+
+    async $beforeInsert(context){
+        await super.$beforeInsert(context)
+        if(this.password) this.password = await bcrypt
+            .hash(this.password, BCRYPT_ROUNDS)
+    }
+
+    async $beforeUpdate(context){
+        await super.$beforeInsert(context)
+        if(this.password) this.password = await bcrypt
+            .hash(this.password, BCRYPT_ROUNDS)
+    }
+
+    static get relationMappings(){
+        
+        const Role = require('./Role')
+
+        return {
+            roles: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Role,
+                join: {
+                    from: 'users.id',
+                    to: 'roles.id',
+                    through: {
+                        from: 'user_roles.user_id',
+                        to: 'user_roles.role_id'
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+module.exports = User
 ```
 
 #### B. Creating a Basic Knex HTTP Server
