@@ -16,7 +16,8 @@ module.exports = {
     "dev": "nodemon src/main.js",
     "dbu": "knex migrate:latest",
     "dbd": "knex migrate:rollback",
-    "dbi": "npm run dbd && npm run dbu"
+    "dbi": "npm run dbd && npm run dbu",
+    "seed": "knex seed:run"
   },
 
   // ....
