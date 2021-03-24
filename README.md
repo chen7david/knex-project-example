@@ -77,7 +77,7 @@ module.exports = {
 }
 ```
 
-5. <code>Knstantiate Knex Object</code>
+5. <code>Instantiate Knex Object</code>
 ```js
 const { development } = require('./../../knexfile')
 const knex = require('knex')(development)
@@ -86,6 +86,27 @@ const knex = require('knex')(development)
 ```cmd
 $ npm init -y && npm i knex sqlite3 && knex init && touch knexfile.js
 ```
+
+### Seeds
+
+#### A. Creating Seeds
+1. <code>$ knex seed:make 01-seed_name</code>
+<code>01-seed_name.js</code>
+```js
+exports.seed = function(knex) {
+  // Deletes ALL existing entries
+  return knex('table_name').truncate()
+    .then(function () {
+      // Inserts seed entries
+      return knex('table_name').insert([
+        {id: 1, colName: 'rowValue1'},
+        {id: 2, colName: 'rowValue2'},
+        {id: 3, colName: 'rowValue3'}
+      ]);
+    });
+};
+```
+2. <code>$ knex seed:run</code>
 
 #### A+. Add Objection
 6. <code>$ npm i objection</code>
