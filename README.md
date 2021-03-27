@@ -119,9 +119,9 @@ exports.seed = function(knex) {
 $ knex migrate:make create_tables && touch src/db/migrations.js && npm i objection && mkdir src/models && touch src/models/Model.js
 ```
 
-<code>Model.js</code>
-
 5. <code>Instantiate Knex Object</code>
+
+<code>Model.js</code>
 ```js
 const { development } = require('./../../knexfile')
 const knex = require('knex')(development)
@@ -133,7 +133,7 @@ class BaseModel extends Model {
 
 }
 
-module.exports = Model
+module.exports = BaseModel
 ```
 
 6. <code>Example Class</code>
